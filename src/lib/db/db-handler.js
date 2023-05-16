@@ -1,5 +1,4 @@
 import {MongoClient} from 'mongodb';
-//const MongoClient = require('mongodb');
 
 export async function connectToCluster(uri) {
     let mongoClient;
@@ -7,6 +6,7 @@ export async function connectToCluster(uri) {
     try {
         mongoClient = new MongoClient(uri);
         console.log('Connecting to MongoDB Atlas cluster...');
+
         await mongoClient.connect();
         console.log('Successfully connected to MongoDB Atlas!');
  
@@ -38,6 +38,15 @@ export async function connectToCluster(uri) {
         name : 'test doc name',
         url : 'test doc url'
     };
+
+    await collection.insertOne(doc);
+ }
+
+ export async function createDocument(collection, name, url) {
+    const doc = {
+        'name' : name,
+        'url' : url
+    }
 
     await collection.insertOne(doc);
  }
