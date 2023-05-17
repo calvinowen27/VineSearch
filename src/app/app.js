@@ -32,10 +32,16 @@ app.get('/upload', function (req, res) {
 // search
 app.get('/search', function(req, res) {
   res.sendFile(rootdir + 'lib/routes/search/search.html');
+  //res.setHeader('testing', 'hello there');
 });
 
 app.post('/search', function(req, res) {
-  console.log(req.body);
+  console.log(req.params);
+  //res.setHeader('testing', 'hello there');
+  //res.end('ok');
+  //console.log(res.getHeader('testing'));
+  //res.json({text: req.body.text});
+  //res.setHeader(req.body.text);
 });
 
 app.post('/input', (req, res) => {

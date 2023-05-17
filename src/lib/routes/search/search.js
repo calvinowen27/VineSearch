@@ -20,8 +20,13 @@ searchForm.addEventListener('submit', function(response) {
         if(!response.ok) {
             throw new Error('/input request failed.')
         }
+
+        console.log('bruh');
+        console.log(response.getHeader('testing'));
+        document.getElementById('search-echo').innerHTML = 'Search: ' + response.body.text;
     })
     .catch(function(err) {
         console.log(err);
     });
 });
+
