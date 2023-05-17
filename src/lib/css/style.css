@@ -8,8 +8,8 @@ h1 {
   font-size: 50pt;
 }
 
-#search-form {
-  align-items: center;
+#search-bar {
+  text-align: center;
 }
 
 #search-input {
@@ -22,7 +22,7 @@ h1 {
   vertical-align: middle;
 }
 
-.search-button {
+#search-button {
   color: white;
   background-color: #00b488;
   width: 60px;
@@ -37,16 +37,35 @@ h1 {
   margin: 0.67em 0;
   font-weight: bold;
   font-size: 25pt;
-  position: absolute;
+  position: relative;
   top: 0%;
   background-color: transparent;
   color: #00b488;
 }
 
-.upload-button {
-  position: absolute;
-  left: 90%;
-  transform: translate(-100%, 0%);
+#action-buttons {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+}
+
+#upload-button {
+  position: relative;
+  /* left: 40%;
+  top: 50%; */
+  /* transform: translate(-50%, 0%); */
+  font-size: 20pt;
+  width: 100px;
+  height: 75px;
+  color: white;
+  background-color: #00b488;
+  border-radius: 5%;
+}
+
+#browse-button {
+  position: relative;
+  /* left: 60%; */
+  /* transform: translate(-50%, 0%); */
   font-size: 20pt;
   width: 100px;
   height: 75px;
@@ -72,10 +91,10 @@ h1 {
 }
 
 #root-video {
-  position: absolute;
+  position: relative;
   left: 50%;
-  top: 35%;
-  transform: translate(-50%, 0%);
+  top: 50%;
+  transform: translate(-50%, 50%);
 }
 
 div.upload {

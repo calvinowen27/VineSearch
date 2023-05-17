@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="../lib/css/style.css">
   </head>
   <body>
-    <h1>Search</h1>
     <button class="button home-button" id="home-button">Vine Search</button>
-    <div style="text-align: center;">
+    <h1>Search</h1>
+    <div id="search-bar">
       <input id="search-input" autocomplete="off" />
-      <button class="button search-button" id="search-button">Go</button>
+      <button class="button" id="search-button">Go</button>
     </div>
-    <button class="button upload-button" id="upload-button">Upload</button>
+    <div id="action-buttons">
+      <button class="button" id="upload-button">Upload</button>
+      <button class="button" id="browse-button">Browse</button>
+    </div>
     <iframe id="root-video" width=445px height=250px src="https://www.youtube.com/embed/lNB9D-rJWc4" allowfullscreen></iframe>
   </body>
   <script type="module" src="../lib/routes/root/root.js"></script>

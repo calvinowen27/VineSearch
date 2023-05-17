@@ -1,6 +1,6 @@
 import express from 'express';
 import { config } from 'dotenv';
-import { dbClear, dbUpload, dbGetRandom } from '../lib/db/db-handler.js';
+import { dbClear, dbUpload, dbGetRandom, dbGetAll } from '../lib/db/db-handler.js';
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 import bodyParser from 'body-parser';
@@ -35,6 +35,22 @@ app.post('/submit-upload', function(req, res) {
   dbUpload(req.body);
 });
 
+// browse
+app.get('/browse', function (req, res) {
+  res.sendFile(rootdir + 'lib/routes/browse/browse.html');
+});
+
+app.get('/browse-get', function (req, res) {
+  var videos = dbGetAll();
+  // videos.then((value) => {
+  //   if(value != null) {
+  //     res.status(200).json(value);
+  //   } else {
+  //     res.status(201).end();
+  //   }
+  // });
+});
+
 // search
 app.get('/search', function(req, res) {
   res.sendFile(rootdir + 'lib/routes/search/search.html');
@@ -45,7 +61,11 @@ app.get('/search', function(req, res) {
 app.get('/get-id', function(req, res) {
   var rand = dbGetRandom();
   rand.then((value) => {
-    res.status(200).send(value);
+    if(value != null) {
+      res.status(200).send(value.videoID);
+    } else {
+      res.status(200).send(id);
+    }
   });
 });
 
