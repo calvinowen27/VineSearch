@@ -30,8 +30,12 @@ app.get('/upload', function (req, res) {
 });
 
 // search
-app.post('/search', function(req, res) {
+app.get('/search', function(req, res) {
   res.sendFile(rootdir + 'lib/routes/search/search.html');
+});
+
+app.post('/search', function(req, res) {
+  console.log(req.body);
 });
 
 app.post('/input', (req, res) => {
