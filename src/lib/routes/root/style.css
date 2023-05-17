@@ -1,0 +1,39 @@
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+    color: #00b488;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', fantasy;
+    font-weight: bold;
+    font-size: 50pt;
+}
+
+#search-input {
+    width: 500px;
+    height: 50px;
+    font-size: 25pt;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.upload-button {
+    background-color: #00b488;
+    border: none;
+    color: white;
+    border-radius: 5%;
+    position: absolute;
+    left: 90%;
+    transform: translate(-100%, 0%);
+    font-size: 20pt;
+    width: 100px;
+    height: 75px;
+    cursor: pointer;
+}
+
+#test {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, 0%);
+}

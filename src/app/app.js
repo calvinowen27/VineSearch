@@ -35,7 +35,7 @@ app.post('/upload', function(req, res) {
 
 app.post('/input', (req, res) => {
   var text = req.body.text;
-  console.log(text);
+  console.log(text.slice(-5));
   //console.log(req.headers.host);
   //executeCrudOperations();
   //res.writeHead(301, {Location: 'http://' + req.headers.host});
