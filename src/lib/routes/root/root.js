@@ -23,3 +23,8 @@ const uploadButton = document.getElementById('upload-button');
 uploadButton.addEventListener('click', function(response) {
     window.location = '/upload';
 });
+
+const homeButton = document.getElementById('home-button');
+homeButton.addEventListener('click', function(response) {
+    window.location = '/';
+});
