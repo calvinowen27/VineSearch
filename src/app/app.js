@@ -42,13 +42,13 @@ app.get('/browse', function (req, res) {
 
 app.get('/browse-get', function (req, res) {
   var videos = dbGetAll();
-  // videos.then((value) => {
-  //   if(value != null) {
-  //     res.status(200).json(value);
-  //   } else {
-  //     res.status(201).end();
-  //   }
-  // });
+  videos.then((value) => {
+    if(value != null) {
+      res.status(200).json(value);
+    } else {
+      res.status(201).end();
+    }
+  });
 });
 
 // search

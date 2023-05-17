@@ -79,12 +79,11 @@ export async function dbGetAll() {
         mongoClient = await connectToCluster();
         const db = mongoClient.db('VineSearch');
         const collection = db.collection('Vines');
-        result = await collection.find();
+        result = await collection.find().limit(10).toArray();
     } finally {
         await mongoClient.close();
     }
 
-    //console.log(result);
     return result;
 }
 
