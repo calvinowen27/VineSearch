@@ -30,8 +30,9 @@ homeButton.addEventListener('click', function(response) {
 });
 
 const searchInput = document.getElementById('search-input');
-const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', function(response) {
+const searchButton = document.getElementById('search-button');
+searchButton.addEventListener('click', function(response) {
+    window.location = '/search?query=' + searchInput.value.split(' ').join('+');
     fetch('/search', {
         method: 'POST',
         body: JSON.stringify({text: searchInput.value}),
@@ -45,4 +46,10 @@ searchForm.addEventListener('submit', function(response) {
     .catch(function(err) {
         console.log(err);
     });
+});
+
+searchInput.addEventListener('keyup', function(e) {
+    if(e.key == 'Enter') {
+        searchButton.click();
+    }
 });

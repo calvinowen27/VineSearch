@@ -33,13 +33,27 @@ export async function connectToCluster(uri) {
     }
  }
 
- export async function createDocument(collection) {
-    const doc = {
-        name : 'test doc name',
-        url : 'test doc url'
-    };
+//  export async function createDocument(collection) {
+//     const doc = {
+//         name : 'test doc name',
+//         url : 'test doc url'
+//     };
 
-    await collection.insertOne(doc);
+//     await collection.insertOne(doc);
+//  }
+
+ export async function dbClear(string) {
+    const uri = "mongodb+srv://admin:adminpass1@vinesearch.2irg5rg.mongodb.net/?retryWrites=true&w=majority";
+    let mongoClient;
+ 
+    try {
+        mongoClient = await connectToCluster(uri);
+        const db = mongoClient.db('VineSearch');
+        const collection = db.collection('Vines');
+        await collection.deleteMany({});
+    } finally {
+        await mongoClient.close();
+    }
  }
 
  export async function createDocument(collection, name, url) {

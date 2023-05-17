@@ -9,8 +9,9 @@ homeButton.addEventListener('click', function(response) {
 });
 
 const searchInput = document.getElementById('search-input');
-const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', function(response) {
+const searchButton = document.getElementById('search-button');
+searchButton.addEventListener('click', function(response) {
+    window.location.href = '/search?query=' + searchInput.value.split(' ').join('+');
     fetch('/search', {
         method: 'POST',
         body: JSON.stringify({text: searchInput.value}),
@@ -20,13 +21,20 @@ searchForm.addEventListener('submit', function(response) {
         if(!response.ok) {
             throw new Error('/input request failed.')
         }
-
-        console.log('bruh');
-        console.log(response.getHeader('testing'));
-        document.getElementById('search-echo').innerHTML = 'Search: ' + response.body.text;
     })
     .catch(function(err) {
         console.log(err);
     });
 });
 
+searchInput.addEventListener('keyup', function(e) {
+    if(e.key == 'Enter') {
+        searchButton.click();
+    }
+});
+
+window.onload = function() {
+    console.log(location.href);
+    var url = location.protocol + '//' + location.host + location.pathname + '?query=';
+    searchInput.value = location.href.slice(url.length).split('+').join(' ');
+}

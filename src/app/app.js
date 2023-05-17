@@ -1,6 +1,6 @@
 import express from 'express';
 import { config } from 'dotenv';
-//import { executeCrudOperations } from './main.js';
+import { dbClear } from '../lib/db/db-handler.js';
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 import bodyParser from 'body-parser';
@@ -33,15 +33,11 @@ app.get('/upload', function (req, res) {
 app.get('/search', function(req, res) {
   res.sendFile(rootdir + 'lib/routes/search/search.html');
   //res.setHeader('testing', 'hello there');
+  //test(req.url.slice(14).split('+').join(' '));
+  dbClear();
 });
 
 app.post('/search', function(req, res) {
-  console.log(req.params);
-  //res.setHeader('testing', 'hello there');
-  //res.end('ok');
-  //console.log(res.getHeader('testing'));
-  //res.json({text: req.body.text});
-  //res.setHeader(req.body.text);
 });
 
 app.post('/input', (req, res) => {
