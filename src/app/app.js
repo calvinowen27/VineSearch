@@ -29,8 +29,9 @@ app.get('/upload', function (req, res) {
   res.sendFile(rootdir + 'lib/routes/upload/upload.html');
 });
 
-app.post('/upload', function(req, res) {
-  res.send();
+// search
+app.post('/search', function(req, res) {
+  res.sendFile(rootdir + 'lib/routes/search/search.html');
 });
 
 app.post('/input', (req, res) => {
