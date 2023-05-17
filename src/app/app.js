@@ -1,6 +1,6 @@
 import express from 'express';
 import { config } from 'dotenv';
-import { dbClear } from '../lib/db/db-handler.js';
+import { dbClear, dbUpload, dbGetRandom } from '../lib/db/db-handler.js';
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 import bodyParser from 'body-parser';
@@ -10,6 +10,8 @@ config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootdir = path.join(__dirname, '../');
+
+var id = 'lNB9D-rJWc4';
 
 const app = express();
 
@@ -29,25 +31,22 @@ app.get('/upload', function (req, res) {
   res.sendFile(rootdir + 'lib/routes/upload/upload.html');
 });
 
+app.post('/submit-upload', function(req, res) {
+  dbUpload(req.body);
+});
+
 // search
 app.get('/search', function(req, res) {
   res.sendFile(rootdir + 'lib/routes/search/search.html');
-  //res.setHeader('testing', 'hello there');
-  //test(req.url.slice(14).split('+').join(' '));
   dbClear();
 });
 
-app.post('/search', function(req, res) {
-});
-
-app.post('/input', (req, res) => {
-  var text = req.body.text;
-  console.log(text.slice(-5));
-  //console.log(req.headers.host);
-  //executeCrudOperations();
-  //res.writeHead(301, {Location: 'http://' + req.headers.host});
-  res.end();
-  res.send();
+// get-id
+app.get('/get-id', function(req, res) {
+  var rand = dbGetRandom();
+  rand.then((value) => {
+    res.status(200).send(value);
+  });
 });
 
 app.listen(PORT, function (req, res) {

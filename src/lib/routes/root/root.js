@@ -1,38 +1,19 @@
-//console.log('Client-side code running');
-
-// const searchInput = document.getElementById('search-input');
-// searchInput.addEventListener('input', function(response) {
-//     //var text = searchInput.value;
-//     //console.log(text);
-//     fetch('/input', {
-//         method: 'POST',
-//         body: JSON.stringify({text: searchInput.value}),
-//         headers: { "Content-Type": "application/json" }
-//     })
-//     .then(function(response) {
-//         if(!response.ok) {
-//             throw new Error('/input request failed.')
-//         }
-//     })
-//     .catch(function(err) {
-//         console.log(err);
-//     });
-// });
+// import { getVideoID } from '../../../app/app.js';
 
 const uploadButton = document.getElementById('upload-button');
 uploadButton.addEventListener('click', function(response) {
-    window.location = '/upload';
+    window.location.href = '/upload';
 });
 
 const homeButton = document.getElementById('home-button');
 homeButton.addEventListener('click', function(response) {
-    window.location = '/';
+    window.location.href = '/';
 });
 
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', function(response) {
-    window.location = '/search?query=' + searchInput.value.split(' ').join('+');
+    window.location.href = '/search?query=' + searchInput.value.split(' ').join('+');
     fetch('/search', {
         method: 'POST',
         body: JSON.stringify({text: searchInput.value}),
@@ -40,7 +21,7 @@ searchButton.addEventListener('click', function(response) {
     })
     .then(function(response) {
         if(!response.ok) {
-            throw new Error('/input request failed.')
+            throw new Error('/search request failed.')
         }
     })
     .catch(function(err) {
@@ -53,3 +34,23 @@ searchInput.addEventListener('keyup', function(e) {
         searchButton.click();
     }
 });
+
+window.onload = function() {
+    fetch('/get-id', {
+        method: 'GET'
+    })
+    .then(function(response) {
+        if(!response.ok) {
+            throw new Error('/get-id request failed.')
+        }
+
+        response.text().then((value) => {
+            var url = 'https://www.youtube.com/embed/' + value;
+            console.log(url);
+            document.getElementById('root-video').setAttribute('src', url);
+        });
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+}

@@ -42,6 +42,37 @@ export async function connectToCluster(uri) {
 //     await collection.insertOne(doc);
 //  }
 
+export async function dbUpload(doc) {
+    const uri = "mongodb+srv://admin:adminpass1@vinesearch.2irg5rg.mongodb.net/?retryWrites=true&w=majority";
+    let mongoClient;
+ 
+    try {
+        mongoClient = await connectToCluster(uri);
+        const db = mongoClient.db('VineSearch');
+        const collection = db.collection('Vines');
+        await collection.insertOne(doc);
+    } finally {
+        await mongoClient.close();
+    }
+}
+
+export async function dbGetRandom() {
+    const uri = "mongodb+srv://admin:adminpass1@vinesearch.2irg5rg.mongodb.net/?retryWrites=true&w=majority";
+    let mongoClient;
+    let result;
+ 
+    try {
+        mongoClient = await connectToCluster(uri);
+        const db = mongoClient.db('VineSearch');
+        const collection = db.collection('Vines');
+        result = await collection.findOne({});
+    } finally {
+        await mongoClient.close();
+    }
+
+    return result.videoID;
+}
+
  export async function dbClear(string) {
     const uri = "mongodb+srv://admin:adminpass1@vinesearch.2irg5rg.mongodb.net/?retryWrites=true&w=majority";
     let mongoClient;

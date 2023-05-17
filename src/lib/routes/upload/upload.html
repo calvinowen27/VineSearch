@@ -9,10 +9,25 @@
   <body>
     <h1>Upload</h1>
     <button class="button home-button" id="home-button">Vine Search</button>
-    <input id="input"><br>
-    <input id="input"><br>
-    <input id="input"><br>
-    <input id="input"><br>
+    <div class="upload">
+      <span>
+        URL<br>
+        <input id="upload-url">
+      </span><br>
+      <span>
+        Creator Name<br>
+        <input id="upload-creator">
+      </span><br>
+      <span>
+        Caption<br>
+        <input id="upload-caption">
+      </span><br>
+      <span>
+        Transcript<br>
+        <textarea id="upload-transcript" style="resize: none;"></textarea>
+      </span><br>
+      <span><button class="button submit-upload-button" id="submit-upload-button">Submit Upload</button></span>
+    </div>
   </body>
   <script type="module" src="../lib/routes/upload/upload.js"></script>
 </html>

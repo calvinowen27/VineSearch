@@ -5,7 +5,7 @@ export function printSearchText(text) {
 
 const homeButton = document.getElementById('home-button');
 homeButton.addEventListener('click', function(response) {
-    window.location = '/';
+    window.location.href = '/';
 });
 
 const searchInput = document.getElementById('search-input');
@@ -19,7 +19,7 @@ searchButton.addEventListener('click', function(response) {
     })
     .then(function(response) {
         if(!response.ok) {
-            throw new Error('/input request failed.')
+            throw new Error('/search request failed.')
         }
     })
     .catch(function(err) {
