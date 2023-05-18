@@ -5,7 +5,7 @@ uploadButton.addEventListener('click', function(res) {
 
 const browseButton = document.getElementById('browse-button');
 browseButton.addEventListener('click', function(res) {
-    window.location.href = '/browse';
+    window.location.href = '/browse?page=1';
 });
 
 const homeButton = document.getElementById('home-button');
@@ -37,23 +37,3 @@ searchInput.addEventListener('keyup', function(e) {
         searchButton.click();
     }
 });
-
-window.onload = function() {
-    fetch('/get-id', {
-        method: 'GET'
-    })
-    .then(function(res) {
-        if(!res.ok) {
-            throw new Error('/get-id request failed.')
-        }
-
-        res.text().then((value) => {
-            var url = 'https://www.youtube.com/embed/' + value;
-            console.log(url);
-            document.getElementById('root-video').setAttribute('src', url);
-        });
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
-}
