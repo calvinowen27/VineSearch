@@ -17,20 +17,7 @@ homeButton.addEventListener('click', function(res) {
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', function(res) {
-    window.location.href = '/search?query=' + searchInput.value.split(' ').join('+'); // build url with search query
-    fetch('/search', {
-        method: 'POST',
-        body: JSON.stringify({text: searchInput.value}),
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(function(res) {
-        if(!res.ok) {
-            throw new Error('/search request failed.')
-        }
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
+    window.location.href = '/search?query=' + searchInput.value.split(' ').join('+'); // build url with search query and redirect
 });
 
 searchInput.addEventListener('keyup', function(e) {

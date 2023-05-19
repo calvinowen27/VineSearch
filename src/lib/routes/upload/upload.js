@@ -14,9 +14,6 @@ submitButton.addEventListener('click', function() {
     // get video id from url
     var videoID = uploadURL.value.split('watch?v=')[1];
 
-    // uploadCreator.value = uploadCreator.value.toUpperCase();
-    // uploadCaption.value = uploadCaption.value.toUpperCase();
-    // uploadTranscript.value = uploadTranscript.value.toUpperCase();
     if(videoID == undefined) // check to make sure video id is valid
     {
         window.alert('Invalid Youtube URL.');
