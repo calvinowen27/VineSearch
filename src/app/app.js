@@ -2,7 +2,6 @@ import express from 'express';
 import { config } from 'dotenv';
 import { dbUpload, dbGetAll, dbSearch } from '../lib/db/db-handler.js';
 import { fileURLToPath } from 'url';
-import { Image } from 'image-js';
 import * as path from 'path';
 import bodyParser from 'body-parser';
 
