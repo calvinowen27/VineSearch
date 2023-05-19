@@ -1,7 +1,8 @@
 import express from 'express';
 import { config } from 'dotenv';
-import { dbUpload, dbGetAll } from '../lib/db/db-handler.js';
+import { dbUpload, dbGetAll, dbSearch } from '../lib/db/db-handler.js';
 import { fileURLToPath } from 'url';
+import { Image } from 'image-js';
 import * as path from 'path';
 import bodyParser from 'body-parser';
 
@@ -39,7 +40,7 @@ app.get('/browse', function (req, res) {
 });
 
 app.get('/browse-get', function (req, res) {
-  var docs = dbGetAll(Number(req.url.split('page=')[1]));
+  var docs = dbGetAll();
   docs.then((value) => {
     if(value != null) {
       res.status(200).json(value);
@@ -49,10 +50,22 @@ app.get('/browse-get', function (req, res) {
   });
 });
 
+var searchDocs;
+
 // search
 app.get('/search', function(req, res) {
+  searchDocs = dbSearch(req.url.split('query=')[1].split('+').join(' '));
   res.sendFile(rootdir + 'lib/routes/search/search.html');
-  dbClear();
+});
+
+app.get('/search-get', function(req, res) {
+  searchDocs.then((value) => {
+    if(value != null) {
+      res.status(200).json(value);
+    } else {
+      res.status(201).end();
+    }
+  });
 });
 
 app.listen(PORT, function (req, res) {

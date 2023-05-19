@@ -7,7 +7,6 @@ h1 {
   font-weight: bold;
   font-size: 50pt;
   outline-color: black;
-  /* margin: 0%; */
 }
 
 h4 {
@@ -26,21 +25,26 @@ p {
 
 iframe {
   margin: 0%;
+  width: 100%;
+  height: 100%;
+}
+
+iframe.video-display {
+  aspect-ratio: 16 / 9;
 }
 
 #search-bar {
   text-align: center;
-  padding-top: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 #search-input {
-  width: 500px;
-  height: 50px;
-  font-size: 25pt;
-  /*position: absolute;*/
-  /*left: 50%;*/
-  /*transform: translate(-50%, 0%);*/
+  width: 510px;
+  height: 56px;
+  font-size: 20pt;
   vertical-align: middle;
+  border-radius: 3.75% / 20%;
 }
 
 #search-button {
@@ -72,9 +76,6 @@ iframe {
 
 #upload-button {
   position: relative;
-  /* left: 40%;
-  top: 50%; */
-  /* transform: translate(-50%, 0%); */
   font-size: 20pt;
   width: 100px;
   height: 75px;
@@ -85,8 +86,6 @@ iframe {
 
 #browse-button {
   position: relative;
-  /* left: 60%; */
-  /* transform: translate(-50%, 0%); */
   font-size: 20pt;
   width: 100px;
   height: 75px;
@@ -160,29 +159,32 @@ span {
   font-family: 'Franklin Gothic Medium', fantasy;
 }
 
-#video-container {
-  display: grid;grid-template-columns: repeat(3, 1fr);
-  row-gap: 20px;
-  margin: 0%;
-}
-
-#browse-video {
-  height: 250px;
-  width: 445px;
-}
-
 /* tablet, iPad, lo-res laptops ands desktops */
-@media (min-width:768px)  { 
+@media (min-width:640px)  { 
   #video-container {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     margin: 0%;
+    width: 95%;
+    row-gap: 25%;
+  }
+
+  #video {
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
   }
 }
 
 /* big landscape tablets, laptops, and desktops */ 
 @media (min-width:1025px) { 
   #video-container {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
     margin: 0%;
+    width: 90%;
+    padding-left: 5%;
+    row-gap: 100px;
+    column-gap: 2%;
   }
 }

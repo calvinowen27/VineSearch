@@ -27,14 +27,36 @@ searchButton.addEventListener('click', function(response) {
     });
 });
 
+window.onload = function() {
+    var url = location.protocol + '//' + location.host + location.pathname + '?query=';
+    searchInput.value = location.href.split('?query=')[1].split('+').join(' ');
+
+    fetch('/search-get', {
+        method: 'GET'
+    })
+    .then(function(res) {
+        if(!res.ok) {
+            throw new Error('/search-get request failed.')
+        }
+
+        if(res.status == 200) {
+            res.text().then((value) => {
+                var docs = JSON.parse(value);
+                Object.entries(docs).forEach(element => {
+                    const [key, value] = element;
+                    var videoHTML = `<div><iframe class="video-display" src="https://www.youtube.com/embed/${value.videoID}" allowfullscreen></iframe><h4>${value.caption}</h4><p>${value.creator}</p></div>`;
+                    document.getElementById('video-container').innerHTML += videoHTML;
+                });
+            });
+        }
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+}
+
 searchInput.addEventListener('keyup', function(e) {
     if(e.key == 'Enter') {
         searchButton.click();
     }
 });
-
-window.onload = function() {
-    console.log(location.href);
-    var url = location.protocol + '//' + location.host + location.pathname + '?query=';
-    searchInput.value = location.href.slice(url.length).split('+').join(' ');
-}

@@ -5,7 +5,7 @@ uploadButton.addEventListener('click', function(res) {
 
 const browseButton = document.getElementById('browse-button');
 browseButton.addEventListener('click', function(res) {
-    window.location.href = '/browse?page=1';
+    window.location.href = '/browse';
 });
 
 const homeButton = document.getElementById('home-button');
