@@ -73,12 +73,13 @@ export async function dbSearch(query) {
 
         // build searchArray from query
         query.split(' ').forEach(element => {
-            searchArray.push(JSON.parse(`{ "keywords": "${element}" }`)); // each element in searchArray is a json object
+            searchArray.push(JSON.parse(`{ "keywords": "${element.toUpperCase()}" }`)); // each element in searchArray is a json object
         });
 
         // find all docs that match search
-        // want to sort by descending relevance but haven't figured that out yet
-        docs = await collection.find({ $or: searchArray }).toArray();
+        // search should be case insensitive
+        // want to sort by descending relevance but haven't got around to it
+        docs = await collection.find({ $or: searchArray }).collation({ locale: 'en', strength: 1 }).toArray();
     } finally {
         await mongoClient.close();
     }
