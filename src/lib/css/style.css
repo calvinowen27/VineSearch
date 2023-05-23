@@ -76,7 +76,7 @@ iframe.video-display {
 #upload-button {
   position: relative;
   font-size: 20pt;
-  width: 100px;
+  width: 150px;
   height: 75px;
   color: white;
   background-color: #00b488;
@@ -86,7 +86,7 @@ iframe.video-display {
 #browse-button {
   position: relative;
   font-size: 20pt;
-  width: 100px;
+  width: 150px;
   height: 75px;
   color: white;
   background-color: #00b488;
